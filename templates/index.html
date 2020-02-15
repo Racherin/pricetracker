@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+    <div class="newsletter-subscribe" style="background-color: rgba(255,255,255,0);">
+        <div class="container">
+            <!-- Start: Intro -->
+            <div class="intro">
+                <h1 class="text-center d-xl-flex justify-content-xl-center align-items-xl-center"
+                    style="background-color: #ffffff;color: #222222;">Free Price Tracker for Amazon, Flipkart &amp;
+                    more</h1>
+                <p class="text-center" style="background-color: #313437;color: #ffffff;">Price History provides historic
+                    price charts for millions of products from multiple stores.&nbsp;<br></p>
+            </div>
+            <!-- End: Intro -->
+            <form class="form-inline" method="post">
+                <div class="form-group"><input class="form-control" type="email" name="email"
+                                               placeholder="Enter Product Link of Any Supported Store"
+                                               style="height: 45px;width: 450px;"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Check</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End: Newsletter Subscription Form -->
+    <!-- Start: 1 Row 3 Columns -->
+    <div>
+        <div class="container d-flex">
+            <div class="row">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="card shadow">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="d-flex">
+                                        <img src="https://via.placeholder.com/640x360" alt="">
+                                    </div>
+                                </div>
+                            <div class="col-6">
+                                    sdsdsd
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="card shadow">
+                            <img class="m-3 col-6"
+                                 src="{{ image }}"
+                                 alt="Vans" style=' width:150px;'>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ title }}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Price: {{ price }}</h6>
+                                <p class="card-text">
+                                    Yeni Philips Çay Makinesi'nin 1,9 L kapasiteli büyük su ısıtıcı haznesiyle tüm
+                                    ailenize
+                                    keyifle çay demleyebilirsiniz. Otomatik Sıcak Tutma fonksiyonu çayınızı sıcak
+                                    tutarak
+                                    istediğiniz zaman içmenize olanak sağlar. </p>
+                                <div class="buy d-flex justify-content-between align-items-center">
+                                    <div class="text-success"><h5 class="mt-4">$125</h5></div>
+                                    <a href="#" class="btn btn-danger mt-3"><i class="fas fa-shopping-cart"></i> Add to
+                                        Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="features-clean" style="background-color: rgba(255,255,255,0);">
+        <div class="container">
+            <!-- Start: Intro -->
+            <div class="intro">
+                <h2 class="text-center">Features</h2>
+                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh
+                    erat,
+                    pellentesque ut laoreet vitae. </p>
+            </div>
+            <!-- End: Intro -->
+            <!-- Start: Features -->
+            <div class="row features">
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
+                    <h3 class="name">Works everywhere</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
+                    <h3 class="name">Always available</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-list-alt icon"></i>
+                    <h3 class="name">Customizable</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-leaf icon"></i>
+                    <h3 class="name">Organic</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-plane icon"></i>
+                    <h3 class="name">Fast</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-phone icon"></i>
+                    <h3 class="name">Mobile-first</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                </div>
+            </div>
+            <!-- End: Features -->
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+
+    <section class="container mt-5">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ürün adı</th>
+                <th scope="col">Şuanki fiyatı</th>
+                <th scope="col">Alarm fiyatı</th>
+                <th scope="col">Mağaza</th>
+                <th scope="col">Ürün silme</th>
+                <th scope="col">Bildirimler</th>
+            </tr>
+            </thead>
+            {% if products %}
+                {% for product in products %}
+
+                    <tbody>
+                    {% if product.status == True %}
+                        <tr class="bg-success">
+                            <th scope="row">{{ product.id }}</th>
+                            <td>{{ product.title|truncatechars:40 }}</td>
+                            <td>{{ product.last_price }} TL</td>
+                            <td>{{ product.alert_price }} TL</td>
+                            <td>{{ product.store }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm"
+                                   href="{% url 'delete' product.id %}">
+                                    <i class="far fa-trash-alt"></i>
+                                    Kaldır
+                                </a>
+                            </td>
+                            <td>{% if product.status == True %}
+
+                                <a class="btn btn-warning btn-sm"
+                                   href="{% url 'cancel-notification' product.id %}"
+                                >
+                                    <i class="fas fa-bell"></i>
+                                    Bildirimleri Kapat
+                                </a>
+
+                            {% else %}
+                                <a class="btn btn-warning btn-sm"
+                                   href={% url 'open-notification' product.id %}
+                                >
+                                    <i class="fas fa-bell"></i>
+                                    Bildirimleri Aç
+                                </a>
+                            {% endif %}</td>
+
+                        </tr>
+                    {% else %}
+                        <tr class="bg-danger">
+                            <th scope="row">{{ product.id }}</th>
+                            <td>{{ product.title|truncatechars:40 }}</td>
+                            <td>{{ product.last_price }} TL</td>
+                            <td>{{ product.alert_price }} TL</td>
+                            <td>{{ product.store }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm"
+                                   href="{% url 'delete' product.id %}">
+                                    <i class="far fa-trash-alt"></i>
+                                    Kaldır
+                                </a>
+                            </td>
+                            <td>{% if product.status == True %}
+
+                                <a class="btn btn-warning btn-sm"
+                                   href={% url 'cancel-notification' product.id %}>
+                                    <i class="fas fa-bell"></i>
+                                    Bildirimleri kapat
+                                </a>
+
+                            {% else %}
+                                <a class="btn btn-warning btn-sm"
+                                   href={% url 'open-notification' product.id %}>
+                                    <i class="fas fa-bell"></i>
+                                    Bildirimleri Aç
+                                </a>
+                            {% endif %}</td>
+
+                        </tr>
+                    {% endif %}
+                    </tbody>
+
+                {% endfor %}
+            {% endif %}
+        </table>
+    </section>
+
+
+{% endblock %}

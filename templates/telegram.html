@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+
+{% block body %}
+    <section class="container text-light">
+        <p style="font-size: 32px"><i class="fab fa-telegram"></i>
+            Telegram Ayarları</p>
+        {% if user.telegram_status == False %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Telegram botunuz henüz aktif değildir.</strong>
+            </div>
+        {% else %}
+            <div class="alert alert-success" role="alert">
+                <strong>Telegram botunuz aktif haldedir.</strong>
+            </div>
+        {% endif %}
+
+        <h3 class="">Adım 1</h3>
+        <p class="lead">Lütfen telefonunuza Telegram uygulamasını indirin.İndirdikten sonra <a target="_blank" class="text-warning text-decoration-none" href="http://t.me/vaktindeal_bot">buraya tıklayarak</a> bota giriş yapın.</p>
+        <br>
+        <h3>Adım 2</h3>
+        <p class="lead">Giriş yaptıktan sonra bota 'chatid' komutu vererek kendinize ait Chat ID numaranızı elde
+            edin.</p>
+        <br>
+        <h3>Adım 3</h3>
+
+        <form method="post" action="">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

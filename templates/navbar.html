@@ -1,0 +1,59 @@
+<div class="">
+    <!-- Start: Navigation with Button -->
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button shadow-sm"
+         style="background-color: rgba(255,255,255,0); height: 60px;">
+        <div class="container ">
+            <a class="navbar-brand text-monospace border-bottom border-top " href="/"
+               style="color: #333333;font-size: 24px;font-weight: bold;">
+                <p class="line anim-typewriter">vaktinde-al</p>
+            </a>
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link ">
+                            Anasayfa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link ">
+                            Özellikler
+                        </a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'telegram' %}" class="nav-link ">
+                                Bildirim Ayarları
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle text-light" role="button"
+                                   id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i> {{ user.get_username }}
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'manage' %}">Ürün Listem</a>
+                                    <a class="dropdown-item" href="{% url 'logoutUser' %}">Çıkış Yap</a>
+                                </div>
+                            </div>
+                        </li>
+                    {% else %}
+
+
+                        <li class="nav-item">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link">
+                                <span class="border rounded p-1 "><i class="fab fa-google"></i> Google Girişi </span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End: Navigation with Button -->
+</div>
