@@ -4,8 +4,76 @@
 
 
 {% block body %}
-    <section class="container text-light">
-        <p style="font-size: 32px"><i class="fab fa-telegram"></i>
+    <style>
+        /*Vertical Steps*/
+        .list-group.vertical-steps {
+            padding-left: 10px;
+        }
+
+        .list-group.vertical-steps .list-group-item {
+            border: none;
+            border-left: 3px solid #ece5dd;
+            box-sizing: border-box;
+            border-radius: 0;
+            counter-increment: step-counter;
+            padding-left: 20px;
+            padding-right: 0px;
+            padding-bottom: 20px;
+            padding-top: 0px;
+        }
+
+        .list-group.vertical-steps .list-group-item.active {
+            background-color: transparent;
+            color: inherit;
+        }
+
+        .list-group.vertical-steps .list-group-item:last-child {
+            border-left: 3px solid transparent;
+            padding-bottom: 0;
+        }
+
+        .list-group.vertical-steps .list-group-item::before {
+            border-radius: 50%;
+            background-color: #ece5dd;
+            color: #555;
+            content: counter(step-counter);
+            display: inline-block;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            margin-left: -35px;
+            text-align: center;
+            width: 25px;
+        }
+
+        .list-group.vertical-steps .list-group-item span,
+        .list-group.vertical-steps .list-group-item a {
+            overflow: hidden;
+            padding-top: 2px;
+        }
+
+        /*Active/ Completed States*/
+        .list-group.vertical-steps .list-group-item.active::before {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .list-group.vertical-steps .list-group-item.completed {
+            border-left: 3px solid #007BFF;
+        }
+
+        .list-group.vertical-steps .list-group-item.completed::before {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .list-group.vertical-steps .list-group-item.completed:last-child {
+            border-left: 3px solid transparent;
+        }
+    </style>
+
+    <section class="container mt-5">
+        <p style="font-size: 32px"><i class="fab fa-telegram" style="color:#007BFF"></i>
             Telegram Ayarları</p>
         {% if user.telegram_status == False %}
             <div class="alert alert-danger" role="alert">
@@ -17,21 +85,27 @@
             </div>
         {% endif %}
 
-        <h3 class="">Adım 1</h3>
-        <p class="lead">Lütfen telefonunuza Telegram uygulamasını indirin.İndirdikten sonra <a target="_blank" class="text-warning text-decoration-none" href="http://t.me/vaktindeal_bot">buraya tıklayarak</a> bota giriş yapın.</p>
-        <br>
-        <h3>Adım 2</h3>
-        <p class="lead">Giriş yaptıktan sonra bota 'chatid' komutu vererek kendinize ait Chat ID numaranızı elde
-            edin.</p>
-        <br>
-        <h3>Adım 3</h3>
-
-        <form method="post" action="">
-            <div class="form-group">
-                {% csrf_token %}
-                {{ form.as_p }}
-            </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
-        </form>
+        <!-- Vertical Steppers -->
+        <ol class="list-group vertical-steps mt-5">
+            <li class="list-group-item completed"><p class="">Lütfen telefonunuza Telegram uygulamasını
+                indirin.İndirdikten sonra <a target="_blank"
+                                             class="text-primary text-decoration-none"
+                                             href="http://t.me/vaktindeal_bot">buraya
+                    tıklayarak</a> bota giriş yapın.</p>
+            </li>
+            <li class="list-group-item completed"><p class="">Giriş yaptıktan sonra bota 'chatid' komutu vererek
+                kendinize ait Chat ID numaranızı elde
+                edin.</p>
+            </li>
+            <li class="list-group-item completed">
+                <form method="post" action="">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </li>
+        </ol>
     </section>
 {% endblock %}

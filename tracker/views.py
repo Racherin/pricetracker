@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from .scripts import telegram
 import string
 from django.contrib import messages
-
+from django.views.decorators import csrf
 import contextlib
 
 try:
@@ -38,11 +38,15 @@ def crawl_data(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36 Edg/80.0.361.48'}
     page = requests.get(url, headers=headers)
-    soup = BeautifulSoup(page.text, "html.parser")
+    soup = BeautifulSoup(page.content, "html.parser")
     if url.startswith('https://www.amazon.com.tr/'):
         product_title = str(soup.find(id="productTitle").text).strip()
         print('Kontrol edilen ürün :' + product_title)
-        product_price = soup.find(id="priceblock_ourprice").text.strip()
+        try:
+            product_price = soup.find(id='priceblock_ourprice').get_text()
+        except:
+            product_price = soup.find(id='priceblock_dealprice').get_text()
+
         img = soup.find(id='landingImage')
         product_image = img['src']
         clean_price = float(product_price.strip('₺').replace(',', '.'))
@@ -63,6 +67,7 @@ def crawl_data(url):
                 'url': url}
 
 
+@csrf.csrf_exempt
 def index(request):
     global title, price, image, price_int, url
     product_url_form = forms.ProductSearch(request.POST or None)
@@ -71,7 +76,6 @@ def index(request):
     randomnumber = random.randint(1, 3)
     if randomnumber == 1:
         context = {
-            'title': 'Logitech S150 1+1 USB Speaker',
             'price': '₺103,89',
             'image': "https://images-na.ssl-images-amazon.com/images/I/81tLaar-pFL._AC_SX679_.jpg",
             'form': product_url_form,
@@ -83,7 +87,6 @@ def index(request):
         }
     elif randomnumber == 2:
         context = {
-            'title': 'Hasbro Monopoly Dijital Bankacılık',
             'price': '₺138,50',
             'image': "https://images-na.ssl-images-amazon.com/images/I/71hiHsg%2BjpL._SL1000_.jpg",
             'form': product_url_form,
@@ -95,7 +98,6 @@ def index(request):
         }
     elif randomnumber == 3:
         context = {
-            'title': 'Apple iPhone 11 Akıllı Telefon, 64 GB',
             'price': '₺7.349,00',
             'image': "https://images-na.ssl-images-amazon.com/images/I/712FrYrG05L._SL1500_.jpg",
             'form': product_url_form,
@@ -129,8 +131,9 @@ def index(request):
 
             }
             return render(request, 'index.html', context)
-        except AttributeError:
+        except Exception as e:
             messages.warning(request, 'Ürün bulunamadı. <a href="/" style="color:#AA3333">Hata Bildir</a>')
+            print(e)
             redirect('index')
 
     if product_add_form.is_valid():

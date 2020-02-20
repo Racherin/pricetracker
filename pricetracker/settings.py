@@ -24,7 +24,7 @@ SECRET_KEY = 'uv(352e08xb)n^0=iu*@%b%tay$x#lntwoa7qjc+=g^x+r!mv^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45d9753d.ngrok.io','127.0.0.1']
+ALLOWED_HOSTS = ['7194c223.ngrok.io','127.0.0.1']
 
 # Application definition
 
@@ -60,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pricetracker.urls'
+handler404 = 'mysite.views.my_custom_page_not_found_view'
 
 TEMPLATES = [
     {
