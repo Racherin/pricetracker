@@ -2,7 +2,7 @@ amqp==2.5.2
 asgiref==3.2.3
 beautifulsoup4==4.8.2
 billiard==3.6.1.0
-celery==4.4.0
+celery==5.2.2
 certifi==2019.11.28
 chardet==3.0.4
 defusedxml==0.6.0
