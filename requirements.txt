@@ -3,7 +3,7 @@ asgiref==3.2.3
 beautifulsoup4==4.8.2
 billiard==3.6.1.0
 celery==4.4.0
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 defusedxml==0.6.0
 Django==3.0.2
